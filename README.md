@@ -1,76 +1,62 @@
-# MfeWorkspace
+# 🧱 Angular + Nx Micro Frontends Starter
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Este repositorio contiene una configuración base para trabajar con **Micro Frontends en Angular** usando **Nx**. Incluye:
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+- ✅ Nx Monorepo
+- ✅ 1 Shell (host)
+- ✅ 2 Micro Frontends (apps)
+- ✅ Configuración con `Module Federation`
 
-Run `npx nx graph` to visually explore what got created. Now, let's get you up to speed!
+---
 
-## Finish your CI setup
+## 🧰 Tecnologías
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/jUfNkuRNYa)
+- [Angular](https://angular.io/)
+- [Nx](https://nx.dev/)
+- [Webpack Module Federation](https://webpack.js.org/concepts/module-federation/)
+- [TypeScript](https://www.typescriptlang.org/)
 
+---
 
-## Run tasks
+## 🚀 Cómo iniciar este repositorio desde cero
 
-To run tasks with Nx use:
+Sigue estos pasos si quieres crear este setup desde cero:
 
-```sh
-npx nx <target> <project-name>
+### 1. Crear el Workspace con Nx y Angular
+
+```bash
+npx create-nx-workspace@latest mfe-workspace --preset=angular
 ```
 
-For example:
+### 2. Instalar soporte para Angular y MFE
 
-```sh
-npx nx build myproject
+```bash
+npm install --save-dev @nx/angular
+npm install
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### 3. Crear la app Shell
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+```bash
+npx nx generate @nx/angular:host shell --remotes=app1,app2 --routing --style=scss
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+### 4. Levanta todo el entorno
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
-
-# Generate a library
-npx nx g @nx/react:lib some-lib
+```bash
+npx nx run-many --target=serve-mfe --projects=shell,app1,app2 --parallel
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Otros Scripts
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+# Levantar el shell + remotes
+npm run dev
 
+# Ver todas las apps
+npx nx graph
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# Ver el preview de producción
+nx build shell
+```
 
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
